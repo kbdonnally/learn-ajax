@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif; }
+
+main {
+  display: grid;
+  grid-template-areas: 'item btn';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(50vh, auto);
+  justify-content: center;
+  align-items: center;
+  text-align: center; }
+
+.item {
+  font-size: 2rem;
+  font-weight: 200;
+  width: 83.33%;
+  margin: 0 auto;
+  border: .5px solid lightpink;
+  border-radius: 5px; }
+
+.ajax-btn {
+  font-family: "Inconsolata";
+  font-size: 1.5rem;
+  padding: .5em .75em;
+  background-color: lightpink;
+  border-radius: 5px;
+  width: 50%;
+  margin: 0 auto; }
+  .ajax-btn:hover {
+    background-color: pink; }
+
+/* METHOD ONE: TRANSFORMING LETTERS */
+.tbta-icon {
+  grid-area: icon;
+  position: relative;
+  width: 2em;
+  height: 2em;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 512px;
+  line-height: 1; }
+  .tbta-icon .top, .tbta-icon .middle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    height: 1em;
+    width: 1em; }
+    .tbta-icon .top .i-1, .tbta-icon .top .i-2, .tbta-icon .top .another-t, .tbta-icon .middle .i-1, .tbta-icon .middle .i-2, .tbta-icon .middle .another-t {
+      height: 1em;
+      width: 1em; }
+    .tbta-icon .top .i-1, .tbta-icon .top .i-2, .tbta-icon .middle .i-1, .tbta-icon .middle .i-2 {
+      font-size: 480px;
+      border: none;
+      display: inline-block;
+      position: relative;
+      top: -50%;
+      left: 0;
+      height: 1em;
+      width: 1em;
+      transform: translate(0, 32px) rotate(90deg); }
+    .tbta-icon .top .i-2, .tbta-icon .middle .i-2 {
+      position: relative;
+      top: -150%;
+      left: calc(50% - 36px);
+      transform: translate(0, 64px) rotate(90deg); }
+    .tbta-icon .top .another-t, .tbta-icon .middle .another-t {
+      position: absolute;
+      top: -100%;
+      transform: translate(109px, 104px); }
+  .tbta-icon .top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-46px); }
+    .tbta-icon .top .i-1, .tbta-icon .top .i-2 {
+      top: 0;
+      transform: translate(0, 0px) rotate(90deg); }
+    .tbta-icon .top .i-2 {
+      top: -100%;
+      transform: translate(0, 32px) rotate(90deg); }
+  .tbta-icon span {
+    display: inline-block;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    color: black; }
+    .tbta-icon span:first-of-type {
+      color: transparent !important;
+      /* to fill the space */
+      height: 1em;
+      width: 1em; }
+    .tbta-icon span:nth-of-type(2) {
+      /* = b */
+      left: -25%;
+      transform: translate(-40px, 108px); }
+    .tbta-icon span:nth-of-type(3) {
+      /* = t */
+      transform: translate(108px, -72px); }
+    .tbta-icon span:last-of-type {
+      /* = a */
+      position: relative;
+      z-index: -1;
+      transform: translate(calc(-1em + 174px), -96px) rotate(-22.75deg); }
+      .tbta-icon span:last-of-type::after {
+        /* track center point */
+        content: '';
+        display: block;
+        position: absolute;
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+
+/* METHOD TWO: DRAW WITH GRID AND SHAPES */
+.icon-grid {
+  display: grid;
+  width: 280px;
+  height: 315px;
+  margin: 25vh auto;
+  grid-template-columns: 120px 140px;
+  /* divide everything by 20 IRL */
+  grid-template-rows: 170px 180px;
+  grid-template-areas: "top-left top-right" "bot-left bot-right";
+  align-items: center;
+  justify-content: center; }
+  .icon-grid * {
+    height: 100%;
+    width: 100%; }
+
+.icon__top-left {
+  grid-area: top-left;
+  position: relative;
+  border-top: 15px solid black; }
+  .icon__top-left::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    height: 0;
+    width: 0;
+    border: 15px solid transparent; }
+
+.icon__top-right {
+  grid-area: top-right;
+  border-top: 15px solid black;
+  border-left: 15px solid black;
+  background-color: white;
+  z-index: 1;
+  /* covers up A's right leg */ }
+  .icon__top-right .b-top-half, .icon__top-right .b-bottom-half {
+    height: 100px;
+    width: 100%;
+    border-top-right-radius: 48%;
+    border-bottom-right-radius: 48%;
+    border: 15px solid black;
+    transform: translate(-15px, -15px);
+    /* NB: translate + 90% width = takes up 80% horizontal space */ }
+  .icon__top-right .b-bottom-half {
+    position: relative;
+    top: -15px;
+    width: 105%; }
+
+.icon__bottom-left {
+  grid-area: bot-left;
+  border-top: 15px solid black;
+  position: relative; }
+  .icon__bottom-left::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    height: 0;
+    width: 0;
+    border: 15px solid transparent; }
+
+.icon__bottom-right--wrapper {
+  position: relative;
+  grid-area: bot-right;
+  border-top: 15px solid black;
+  border-left: 15px solid black; }
+  .icon__bottom-right--wrapper::after {
+    /* cross bar */
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: -10px;
+    top: 75px;
+    /* add 20 b/c border */
+    height: 15px;
+    width: 90px;
+    background-color: black;
+    transform: rotate(-22.5deg); }
+  .icon__bottom-right--wrapper .icon__bottom-right {
+    transform: translate(30px, -50.75px) rotate(-30deg);
+    height: 160px;
+    width: 160px;
+    position: relative;
+    top: -15px;
+    left: -15px; }
+    .icon__bottom-right--wrapper .icon__bottom-right::after {
+      /* left leg */
+      content: '';
+      position: absolute;
+      left: calc(-40px - 12px);
+      top: -7px;
+      height: 160px;
+      width: 15px;
+      background-color: transparent;
+      transform: translateX(50%) rotate(30deg); }
+    .icon__bottom-right--wrapper .icon__bottom-right .a-right-leg {
+      position: relative;
+      top: 0px;
+      left: 25px;
+      background-color: black;
+      height: 160px;
+      width: 15px;
+      transform: translateX(-25%) rotate(-15deg); }
+      .icon__bottom-right--wrapper .icon__bottom-right .a-right-leg::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        bottom: -15px;
+        left: 0;
+        height: 16px;
+        width: 15px;
+        background-color: black; }
+      .icon__bottom-right--wrapper .icon__bottom-right .a-right-leg::before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        bottom: -51.2px;
+        left: -20px;
+        height: 0;
+        width: 0;
+        border: 22.2px solid transparent; }
